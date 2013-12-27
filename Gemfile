@@ -6,6 +6,7 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'high_voltage'
 
 
 # Gems used only for assets and not required
@@ -24,7 +25,7 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec-rails'
-  
+  gem 'capybara', '1.1.4'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
