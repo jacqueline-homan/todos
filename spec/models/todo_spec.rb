@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Todo, '#user=' do
+describe Todo, '#user=' do ## The '#user=' is an instance method on our todo
   it 'assigns owner_email from the user passed in email' do
     user = User.new('person@example.com')
     todo = Todo.new
