@@ -20,6 +20,22 @@ feature 'Manage todos' do
     user_does_not_see_todo_item 'Buy coffee cream'
   end
 
+  scenario 'denote completed todos' do
+    sign_in
+    create_todo_with_description 'Buy coffee cream'    
+    
+    complete_todo 'Buy coffee cream'
+    expect(page).to have_css 'li.todo.completed'
+
+  end
+
+  def complete_todo(description)
+    within "li.todo:contains('#{description}')" do
+      click_link 'Complete'
+    end
+  end   
+
+
   def create_todo_with_description(description)
     click_link 'Add new todo'
     fill_in 'Description', with: description
