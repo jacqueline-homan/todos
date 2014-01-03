@@ -13,19 +13,20 @@ feature 'Manage todos' do
   scenario 'view only my todos' do
     # todo = Todo.where(description: 'Read three chapters of RSpec book').first
     # expect(todo).to be_nil
+    create(:todo, description: 'Buy coffee cream', owner_email: 'not_me@example.com')
+    create(:todo, description: 'Buy bread', owner_email: 'me@example.com')
     sign_in_as 'me@example.com'
     
-    create(:todo, description: 'Buy coffee cream', owner_email: 'not_me@example.com')
-    
-    user_sees_todo_item 'Buy coffee cream'  
-    user_does_not_see_todo_item 'Buy bread'
+    user_does_not_see_todo_item 'Buy coffee cream'  
+    user_sees_todo_item 'Buy bread'
   end
 
   scenario 'denote completed todos' do    
     sign_in
 
     create_todo_with_description 'Buy coffee cream'    
-    
+    complete_todo 'Buy coffee cream'
+
     user_sees_completed_todo_item 'Buy coffee cream'    
   end
 
@@ -63,10 +64,9 @@ feature 'Manage todos' do
  
 
 #  def sign_in
-#  	visit root_path
-#  	fill_in 'Email address', with: 'person@email.com'
-#  	click_button 'Sign In'
+#   visit root_path
+#   fill_in 'Email address', with: 'person@email.com'
+#   click_button 'Sign In'
 #  end
 end
 
-	
